@@ -16,10 +16,12 @@ const Form = ({ handleSubmit }: { handleSubmit: (value: string) => void }) => {
   return (
     <form onSubmit={onHandleSubmit} className="form" name="form">
       <div className="input-box">
-        <label htmlFor="">New Note</label>
+        <label htmlFor="input-note">New Note</label>
         <textarea
+          id="input-note"
           className="input-note"
-          rows={8}
+          rows={6}
+          maxLength={265}
           onChange={(event) => valueSet(event.target.value)}
           ref={componentTextarea}
         ></textarea>

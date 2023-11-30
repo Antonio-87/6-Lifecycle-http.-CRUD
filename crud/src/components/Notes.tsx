@@ -6,8 +6,7 @@ const Notes = ({
 }: PropsWithChildren<{ className: string }>) => {
   return (
     <>
-      <ul className={className}></ul>
-      {children}
+      <ul className={className}>{children}</ul>
     </>
   );
 };
