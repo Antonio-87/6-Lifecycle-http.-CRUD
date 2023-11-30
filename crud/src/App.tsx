@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { v4 as uuidv4 } from "uuid";
 import Form from "./components/Form";
 import Notes from "./components/Notes";
 import { createNote, deleteNote, getNotes } from "./components/Api.tsx";
@@ -18,7 +19,8 @@ function App() {
   }, [note, delNote]);
 
   const handleSubmit = (value: string) => {
-    createNote({ id: 0, content: value });
+    const newId = uuidv4();
+    createNote({ id: Number(newId), content: value });
     setNote(value);
   };
 
