@@ -13,6 +13,14 @@ const Form = ({ handleSubmit }: { handleSubmit: (value: string) => void }) => {
     }
   };
 
+  const onHandleClick = () => {
+    if (value !== "") handleSubmit(value);
+    if (componentTextarea.current) {
+      componentTextarea.current.value = "";
+      valueSet("");
+    }
+  };
+
   return (
     <form onSubmit={onHandleSubmit} className="form" name="form">
       <div className="input-box">
@@ -25,7 +33,7 @@ const Form = ({ handleSubmit }: { handleSubmit: (value: string) => void }) => {
           onChange={(event) => valueSet(event.target.value)}
           ref={componentTextarea}
         ></textarea>
-        <div className="send"></div>
+        <div className="send" onClick={onHandleClick}></div>
       </div>
     </form>
   );

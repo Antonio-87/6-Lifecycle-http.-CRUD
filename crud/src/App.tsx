@@ -1,32 +1,30 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { v4 as uuidv4 } from "uuid";
 import Form from "./components/Form";
 import Notes from "./components/Notes";
 import { createNote, deleteNote, getNotes } from "./components/Api.tsx";
 
 function App() {
   const [notes, setNotes] = useState<{ id: number; content: string }[]>([]);
-  const [note, setNote] = useState<string>("");
-  const [delNote, setDeleteNote] = useState<number>(0);
+  // const [note, setNote] = useState<string>("");
+  // const [delNote, setDeleteNote] = useState<number>(0);
 
   useEffect(() => {
     getNotes(setNotes);
   }, []);
 
-  useEffect(() => {
-    getNotes(setNotes);
-  }, [note, delNote]);
+  // useEffect(() => {
+  //   getNotes(setNotes);
+  // }, [note, delNote]);
 
-  const handleSubmit = (value: string) => {
-    const newId = uuidv4();
-    createNote({ id: Number(newId), content: value });
-    setNote(value);
+  const handleSubmit = async (value: string) => {
+    const created = await createNote({ id: 0, content: value });
+    if (created === true) getNotes(setNotes);
   };
 
-  const handleDelete = (id: number) => {
-    deleteNote(id);
-    setDeleteNote(id);
+  const handleDelete = async (id: number) => {
+    const created = await deleteNote(id);
+    if (created === true) getNotes(setNotes);
   };
 
   const handleUpdate = () => {

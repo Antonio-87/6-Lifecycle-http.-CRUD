@@ -13,8 +13,8 @@ const getNotes = (
   );
 };
 
-const createNote = ({ id, content }: { id: number; content: string }) => {
-  createRequest(`${HOST}/notes/`, {
+const createNote = async ({ id, content }: { id: number; content: string }) => {
+  return await createRequest(`${HOST}/notes/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -23,8 +23,8 @@ const createNote = ({ id, content }: { id: number; content: string }) => {
   });
 };
 
-const deleteNote = (id: number) => {
-  createRequest(`${HOST}/notes/${id}`, {
+const deleteNote = async (id: number) => {
+  return await createRequest(`${HOST}/notes/${id}`, {
     method: "DELETE",
   });
 };
