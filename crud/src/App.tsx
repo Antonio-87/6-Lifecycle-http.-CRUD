@@ -6,16 +6,10 @@ import { createNote, deleteNote, getNotes } from "./components/Api.tsx";
 
 function App() {
   const [notes, setNotes] = useState<{ id: number; content: string }[]>([]);
-  // const [note, setNote] = useState<string>("");
-  // const [delNote, setDeleteNote] = useState<number>(0);
 
   useEffect(() => {
     getNotes(setNotes);
   }, []);
-
-  // useEffect(() => {
-  //   getNotes(setNotes);
-  // }, [note, delNote]);
 
   const handleSubmit = async (value: string) => {
     const created = await createNote({ id: 0, content: value });
